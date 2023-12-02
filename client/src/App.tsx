@@ -7,7 +7,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <div>
+    <div className='app-div'>
       <Routes location={location} key={location.pathname}>
         <Route index element={<HomePage />} />
         <Route path='/game' element={<Game />} />
