@@ -25,12 +25,13 @@
 }
 .green{
     background-color: #7bb141;
+    border-radius: 5px;
 }
 
 .change{
     position: absolute;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 5px;
     background-color: #7bb141;
     transition: all 0.3s ease-in;
 }
@@ -41,5 +42,6 @@
     border-radius: 2px;
     background-color: #fb2930;
     transition: all 0.3s ease-in;
+    border-radius: 50%;
 }
 
