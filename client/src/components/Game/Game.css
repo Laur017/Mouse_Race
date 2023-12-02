@@ -3,5 +3,36 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    gap:1rem;
 }
+
+.action-div{
+    /* background-color: cadetblue; */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.red, .green{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.red{
+    background-color: #fb2930;
+}
+.green{
+    background-color: #7bb141;
+}
+
+.change{
+    position: relative;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color: #755afb;
+}
+
