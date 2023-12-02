@@ -15,24 +15,31 @@
 }
 
 .red, .green{
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
     position: absolute;
     cursor: pointer;
 }
 
 .red{
     background-color: #fb2930;
+    border-radius: 50%;
 }
 .green{
     background-color: #7bb141;
 }
 
 .change{
-    position: relative;
+    position: absolute;
     cursor: pointer;
     border-radius: 2px;
-    background-color: #755afb;
+    background-color: #7bb141;
+    transition: all 0.3s ease-in;
+}
+
+.changed{
+    position: absolute;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color: #fb2930;
+    transition: all 0.3s ease-in;
 }
 

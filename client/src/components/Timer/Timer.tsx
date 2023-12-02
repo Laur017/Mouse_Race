@@ -21,6 +21,7 @@ export default function Timer() {
 
     //     return () => clearInterval(intervalId);
     // }, []);
+ 
 
     return (
         <div className="timer-div">
