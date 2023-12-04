@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function GameOver({ type, seconds, minutes }) {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState<string>('');
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
@@ -20,8 +20,11 @@ export default function GameOver({ type, seconds, minutes }) {
         seconds: seconds,
       });
 
-      navigate("/leaderboard")
-
+      navigate("/leaderboard", {state: {
+        username: username,
+        time : `${minutes < 10 ? "0" + minutes : minutes} : ${seconds < 10 ? "0" + seconds : seconds}`
+      }})
+      
       if (response.status === 200) {
         console.log('Score submitted successfully!');
         
