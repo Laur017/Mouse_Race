@@ -1,9 +1,11 @@
 import './GameOver.css';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function GameOver({ type, seconds, minutes }) {
   const [username, setUsername] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = async () => {
     try {
@@ -18,8 +20,11 @@ export default function GameOver({ type, seconds, minutes }) {
         seconds: seconds,
       });
 
+      navigate("/leaderboard")
+
       if (response.status === 200) {
         console.log('Score submitted successfully!');
+        
       } else {
         console.error('Failed to submit score.');
       }
