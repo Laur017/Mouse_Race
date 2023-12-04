@@ -4,7 +4,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import {CONSTANTS} from '../../../constants.ts'
 
-export default function GameOver({ type, seconds, minutes }) {
+interface Props {
+  type: boolean;
+  seconds: number;
+  minutes: number;
+}
+
+export default function GameOver({ type, seconds, minutes }:Props) {
   const [username, setUsername] = useState<string>('');
   const navigate = useNavigate()
 

@@ -4,8 +4,16 @@ import Timer from "../Timer/Timer";
 import GameOver from "../GameOver/GameOver";
 import {CONSTANTS} from '../../../constants.ts'
 
+interface GameObject {
+  id: number;
+  class: string;
+  top: number;
+  left: number;
+  size: number;
+}
+
 export default function Game() {
-    const [objects, setObjects] = useState<{id: number; class:string; top: number; left: number; size: number}[]>([]);
+    const [objects, setObjects] = useState<GameObject[]>([]);
     const [gameOver, setGameOver] = useState<boolean>(false)
     const [win, setWin] = useState<boolean>(false)
     const [countCorrect, setCountCorrect] = useState<number>(0)

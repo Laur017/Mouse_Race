@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import './Timer.css'
 
-export default function Timer({over, timeUp}) {
+interface TimerProps {
+    over: boolean;
+    timeUp: (m: number, s: number) => void;
+  }
+
+export default function Timer({over, timeUp}:TimerProps) {
     const [minutes, setMinutes] = useState<number>(0);
     const [seconds, setSeconds] = useState<number>(0);
 
