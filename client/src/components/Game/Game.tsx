@@ -6,6 +6,10 @@ import GameOver from "../GameOver/GameOver";
 export default function Game() {
     const [objects, setObjects] = useState<{id: number; class:string; top: number; left: number; size: number}[]>([]);
     const [gameOver, setGameOver] = useState<boolean>(false)
+    const [win, setWin] = useState<boolean>(false)
+    const [countCorrect, setCountCorrect] = useState<number>(0)
+    const [seconds, setSeconds] = useState<number>(0)
+    const [minutes, setMinutes] = useState<number>(0)
 
     useEffect(() => {
         const newObjects: {
@@ -79,18 +83,34 @@ export default function Game() {
 
     const handleClick = (id: number, event: React.MouseEvent<HTMLDivElement>) => {
         if(event.currentTarget.className === "red" || event.currentTarget.className === "changed"){
+          setWin(false)
           setGameOver(true)
         }
+
         const updatedBalls = objects.filter((ball) => ball.id !== id);
         setObjects(updatedBalls);
+        setCountCorrect(countCorrect + 1)
+
     };
+
+    useEffect(() => {
+      if(countCorrect === 15){
+        setWin(true)
+        setGameOver(true)
+      }
+    },[countCorrect]);
+
+    const timeUp = (m:number, s:number) => {
+      setMinutes(m);
+      setSeconds(s);
+    }
 
     return (
         <div className="game-div">
-            <Timer />
+            <Timer over={win} timeUp = {timeUp}/>
             {gameOver && 
             <div className="back-panel">
-              <GameOver type={true }/>
+              <GameOver type={win} seconds={seconds} minutes={minutes}/>
             </div>  
               }
             <div className="action-div">

@@ -4,14 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "devStart":"nodemon server.js",
+    "devStart": "nodemon server.js",
     "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "firebase": "^10.7.0",
+    "firebase-admin": "^11.11.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
