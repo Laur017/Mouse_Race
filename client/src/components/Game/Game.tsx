@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import './Game.css';
 import Timer from "../Timer/Timer";
+import GameOver from "../GameOver/GameOver";
 
 export default function Game() {
     const [objects, setObjects] = useState<{id: number; class:string; top: number; left: number; size: number}[]>([]);
+    const [gameOver, setGameOver] = useState<boolean>(false)
 
     useEffect(() => {
         const newObjects: {
@@ -24,7 +26,6 @@ export default function Game() {
               left = Math.floor(Math.random() * 10) * 10;
               size = Math.floor(Math.random() * 5) + 1;
           
-              // Check collision with existing objects
               for (const obj of newObjects) {
                 if (
                   top > obj.top - 4 * obj.size &&
@@ -76,7 +77,10 @@ export default function Game() {
       }, []);
       
 
-    const handleClick = (id: number) => {
+    const handleClick = (id: number, event: React.MouseEvent<HTMLDivElement>) => {
+        if(event.currentTarget.className === "red" || event.currentTarget.className === "changed"){
+          setGameOver(true)
+        }
         const updatedBalls = objects.filter((ball) => ball.id !== id);
         setObjects(updatedBalls);
     };
@@ -84,6 +88,11 @@ export default function Game() {
     return (
         <div className="game-div">
             <Timer />
+            {gameOver && 
+            <div className="back-panel">
+              <GameOver type={true }/>
+            </div>  
+              }
             <div className="action-div">
                 {objects.map((obj) => (
                     <div
@@ -94,7 +103,7 @@ export default function Game() {
                             left: `${obj.left}%`, 
                             width: `${obj.size}rem`, 
                             height: `${obj.size}rem`}}
-                        onClick={() => handleClick(obj.id)}
+                        onClick={(e) => handleClick(obj.id,e)}
                     ></div>
                 ))}
             </div>

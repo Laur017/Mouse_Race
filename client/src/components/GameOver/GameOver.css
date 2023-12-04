@@ -1,0 +1,36 @@
+.game-over-card{
+    background-color: gainsboro;
+    width: 20rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #232323;
+    border-radius: 1rem;
+
+    div{
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    input{
+        letter-spacing: 2px;
+        width: 10rem;
+        padding-left: 0.5rem;
+        height: 1.5rem;
+        border-radius: 5px;
+    }
+}
+
+.play-again-button{
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    padding: 0.5rem 3rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
