@@ -3,12 +3,16 @@ import Crown from '../../assets/crown.png'
 import { useNavigate, useLocation } from 'react-router'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import {CONSTANTS} from '../../../constants.ts'
 
 export default function Leaderboard() {
+    
     const location = useLocation()
+    const navigate = useNavigate()
+
     const thisUser = location.state?.username
     const thisUserTime = location.state?.time
-    const navigate = useNavigate()
+    
     const [users, setUsers] = useState([])
     const [orderedUsers,setOrderedUsers] = useState([])
     const [userPosition, setUserPosition] = useState()
@@ -16,7 +20,7 @@ export default function Leaderboard() {
     useEffect(() => {
         const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/get-users');
+            const response = await axios.get(`${CONSTANTS.BASE_URL}/get-users`);
             setUsers(response.data.users);
         } catch (error) {
             console.error('Error fetching users:', error);

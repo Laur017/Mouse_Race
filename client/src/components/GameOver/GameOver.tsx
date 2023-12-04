@@ -2,6 +2,7 @@ import './GameOver.css';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import {CONSTANTS} from '../../../constants.ts'
 
 export default function GameOver({ type, seconds, minutes }) {
   const [username, setUsername] = useState<string>('');
@@ -14,7 +15,7 @@ export default function GameOver({ type, seconds, minutes }) {
         return;
       }
 
-      const response = await axios.post('http://localhost:4000/add-user', {
+      const response = await axios.post(`${CONSTANTS.BASE_URL}/add-user`, {
         username: username,
         minutes: minutes,
         seconds: seconds,
@@ -38,7 +39,7 @@ export default function GameOver({ type, seconds, minutes }) {
 
   return (
     <div className="game-over-card">
-      <h2>Game Over !</h2>
+      <h2>Game Over!</h2>
       {type === true ? (
         <div>
           <h3>You Won !</h3>
@@ -58,7 +59,7 @@ export default function GameOver({ type, seconds, minutes }) {
         </div>
       ) : (
         <div>
-          <h3>You Lost !</h3>
+          <h3>You Lost!</h3>
           <button
             className="play-again-button"
             onClick={() => window.location.reload()}

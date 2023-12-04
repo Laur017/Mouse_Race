@@ -52,3 +52,9 @@
     position: absolute;
     z-index:1;
 }
+
+.game-score{
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}

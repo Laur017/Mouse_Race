@@ -18,7 +18,6 @@ export default function Timer({over, timeUp}) {
 
     useEffect(() => {
         const intervalId = setInterval(incrementTimer, 1000);
-
         return () => clearInterval(intervalId);
     }, []);
 

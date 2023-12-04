@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import './Game.css';
 import Timer from "../Timer/Timer";
 import GameOver from "../GameOver/GameOver";
+import {CONSTANTS} from '../../../constants.ts'
 
 export default function Game() {
     const [objects, setObjects] = useState<{id: number; class:string; top: number; left: number; size: number}[]>([]);
@@ -45,13 +46,11 @@ export default function Game() {
             
             return { top, left, size };
           };
-          
-
       
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < CONSTANTS.OBJECTS_TO_AVOID + CONSTANTS.OBJECTS_TO_CHANGE + CONSTANTS.OBJECTS_TO_COLLECT ; i++) {
           const position = generateRandomPosition();
           const classType =
-            i >= 0 && i < 10 ? "red" : i >= 10 && i < 20 ? "green" : "change";
+            i >= 0 && i < CONSTANTS.OBJECTS_TO_AVOID ? "red" : i >= CONSTANTS.OBJECTS_TO_AVOID && i < CONSTANTS.OBJECTS_TO_COLLECT+CONSTANTS.OBJECTS_TO_AVOID ? "green" : "change";
           const object = {
             id: i,
             class: classType,
@@ -94,7 +93,7 @@ export default function Game() {
     };
 
     useEffect(() => {
-      if(countCorrect === 15){
+      if(countCorrect === CONSTANTS.OBJECTS_TO_CHANGE + CONSTANTS.OBJECTS_TO_COLLECT){
         setWin(true)
         setGameOver(true)
       }
@@ -107,7 +106,10 @@ export default function Game() {
 
     return (
         <div className="game-div">
+          <div className="game-score">
+            <h3>{countCorrect} / {CONSTANTS.OBJECTS_TO_COLLECT + CONSTANTS.OBJECTS_TO_CHANGE}</h3>
             <Timer over={win} timeUp = {timeUp}/>
+          </div>
             {gameOver && 
             <div className="back-panel">
               <GameOver type={win} seconds={seconds} minutes={minutes}/>
